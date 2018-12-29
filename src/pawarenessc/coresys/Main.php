@@ -200,7 +200,7 @@ public function onEnable() {
 
  $this->getLogger()->info("Coresysを読み込みました");
 
- $this->getLogger()->info("v6.5.0");
+ $this->getLogger()->info("v7.0.0");
 
  $this->getLogger()->info("=========================");
 
