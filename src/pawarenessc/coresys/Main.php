@@ -560,11 +560,11 @@ public function onRespawn(PlayerRespawnEvent $ev){
 	 $posb  = new Position($this->xyz->getAll()["Blue"]["x"],$this->xyz->getAll()["Blue"]["y"],$this->xyz->getAll()["Blue"]["z"],$level);
 	
 	if($this->type[$name] == 1){ // ブルー
-	 $p->teleport($posb);
+	 $this->getScheduler()->scheduleDelayedTask(new CallbackTask([$this, "spawn"], [$p]),30);
 	}
 	
 	if($this->type[$name] == 2){ // レッド
-	 $p->teleport($posr);
+	 $this->getScheduler()->scheduleDelayedTask(new CallbackTask([$this, "spawn"], [$p]),30);
 	}
 }
 		
@@ -678,5 +678,18 @@ public function addMoney($name, $money){
  	return true;
  
 }
+	
+ public function spawn ($p){
+ $name = $p->getName();
+ $level = Server::getInstance()->getLevelByName($this->xyz->get("ワールド"));
+ $posr  = new Position($this->xyz->getAll()["Red"]["x"],$this->xyz->getAll()["Red"]["y"],$this->xyz->getAll()["Red"]["z"],$level);
+ $posb  = new Position($this->xyz->getAll()["Blue"]["x"],$this->xyz->getAll()["Blue"]["y"],$this->xyz->getAll()["Blue"]["z"],$level);
+	 
+	 if($this->type[$name] == 1){ // ブルー
+	 $p->teleport($posb);
+		 
+	}elseif($this->type[$name] == 2){ // レッド
+	$p->teleport($posr);
+   }
+  }
 }
-
