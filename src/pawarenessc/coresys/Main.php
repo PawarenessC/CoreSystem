@@ -552,8 +552,25 @@ public function onBreak(BlockBreakEvent $ev){
 
 }
 
-
-	 public function onDamage(EntityDamageEvent $ev){
+public function onRespawn(PlayerRespawnEvent $ev){
+	  $p = $ev->getPlayer();
+	  $name = $p->getName();
+	 $level = Server::getInstance()->getLevelByName($this->xyz->get("ワールド"));
+	 $posr  = new Position($this->xyz->getAll()["Red"]["x"],$this->xyz->getAll()["Red"]["y"],$this->xyz->getAll()["Red"]["z"],$level);
+	 $posb  = new Position($this->xyz->getAll()["Blue"]["x"],$this->xyz->getAll()["Blue"]["y"],$this->xyz->getAll()["Blue"]["z"],$level);
+	
+	if($this->type[$name] == 1){ // ブルー
+	 $p->teleport($posb);
+	}
+	
+	if($this->type[$name] == 2){ // レッド
+	 $p->teleport($posr);
+	}
+}
+		
+	
+	
+	public function onDamage(EntityDamageEvent $ev){
 
 
 
