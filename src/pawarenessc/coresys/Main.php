@@ -1,11 +1,5 @@
 <?php
 
-
-
-
-
-
-
 namespace pawarenessc\coresys;
 
 
