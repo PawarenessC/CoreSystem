@@ -234,6 +234,8 @@ class Main extends pluginBase implements Listener{
 		$this->red = 0;
 		$this->blue = 0;
 		
+		$this->players = [];
+		
 		$money = $this->config->get("Reward");
 			
 			if($team == "Red"){
