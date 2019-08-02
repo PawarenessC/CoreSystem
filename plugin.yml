@@ -1,0 +1,11 @@
+name: CoreSystem
+main: pawarenessc\core\Main
+version: 1.0.0
+api: [4.0.0,3.0.0,3.5.0]
+author : PawarenessC
+load: POSTWORLD
+description: play pvp.
+commands:
+ core:
+  description: "PvPに参加"
+  usage: " /core "
