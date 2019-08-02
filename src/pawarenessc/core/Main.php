@@ -100,7 +100,7 @@ class Main extends pluginBase implements Listener{
         ));
         
         $this->getScheduler()->scheduleRepeatingTask(new CallbackTask([$this, "statpop"]), 20);
-        
+        $this->system = $this->getServer()->getPluginManager()->getPlugin("EconomyAPI");
     }
 		
 		
@@ -269,4 +269,24 @@ class Main extends pluginBase implements Listener{
 			$player->sendPopup("§9Blue§f: {$this->bluehp}\n§4Red§f: {$this->redhp}\n\n");
 		}
 	}
+	
+	public function addMoney($p, int $money){
+		$plugin = $this->config->get("Plugin");
+		$name = $p->getName();
+		
+		switch($plugin){
+			case "EconomyAPI":
+			$this->system->addmoney($name ,$money);
+			break;
+			
+			case "MoneySystem":
+			API::getInstance()->increase($p, $money, "CorePvP", "PvPで勝利");
+			break;
+			
+			case "MixCoinSystem":
+			MixCoinSystem::getInstance()->PlusCoin($name,$money);
+			break;
+		}
+	}
+}
 }
